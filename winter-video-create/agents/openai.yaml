@@ -1,0 +1,4 @@
+interface:
+  display_name: "winter-video-create"
+  short_description: "按口播节奏制作整屏多锚点 Remotion/HyperFrames 视频舞台"
+  default_prompt: "使用 $winter-video-create 制作这条口播视频：先盘点口播稿和素材文件夹，再输出舞台级分镜；每个普通舞台使用多个空间锚点、拓扑关系和状态变化，避免固定角落卡片，最后完成关键帧验收。"

@@ -1,0 +1,13 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+
+# 审核过程中产生的个人数据默认不入 Git。
+data/profile.md
+data/my-rules.md
+data/history/*
+!data/history/README.md
+data/wordlists/*
+!data/wordlists/README.md
+data/cases/*
+!data/cases/README.md
