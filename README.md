@@ -4,7 +4,6 @@
 
 ## 当前 Skill
 
-- `cover-prompts`：封面提示词与风格规范
 - `winter-ppt-creator`：赛博朋克风格网页 PPT 生成
 - `winter-publish-check`：国内自媒体发布前风险审核
 - `winter-video-create`：口播视频后期动画与成片制作
