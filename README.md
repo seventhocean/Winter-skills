@@ -5,8 +5,6 @@
 ## 当前 Skill
 
 - `winter-ppt-creator`：赛博朋克风格网页 PPT 生成
-- `winter-publish-check`：国内自媒体发布前风险审核
-- `winter-video-create`：口播视频后期动画与成片制作
 - `winter-skill-system-manager`：本地 Skill、软链接和项目引用的盘点、分类、安全审计、可恢复隔离与迁移管理
 
 这里只放经过清理、可以公开发布的内容，不包含本机绝对路径、凭据、个人数据或私有素材。
