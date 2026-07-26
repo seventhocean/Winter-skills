@@ -83,7 +83,46 @@ python3 /absolute/path/to/winter-skill-system-manager/scripts/skill_system_manag
 
 Verification fails on broken symlinks or missing `SKILL.md` records and reports duplicate content as warnings. If the local state changed after inventory, rescan before verifying.
 
-### 6. Roll back
+### 6. Audit Skill behavior
+
+Run the static audit against an inventory or explicit roots. It reads `SKILL.md` and executable script files only; it never executes scanned code or makes network requests:
+
+```bash
+python3 /absolute/path/to/winter-skill-system-manager/scripts/skill_system_manager.py \
+  audit --input /tmp/skill-inventory.json --output /tmp/skill-audit.json
+```
+
+Review exact file, line, excerpt, rule, and severity for every finding. A high or critical finding makes the command exit non-zero. Read [references/security-audit.md](references/security-audit.md) when interpreting findings. Protected Codex plugin paths are reported as skipped and are never modified.
+
+### 7. Inspect entrypoints
+
+Use `status` to see which host or project entrypoints point to which physical source:
+
+```bash
+python3 /absolute/path/to/winter-skill-system-manager/scripts/skill_system_manager.py \
+  status --project-root "/path/to/project" --include-sources
+```
+
+The report distinguishes direct absolute links, relative links, indirect links, broken links, and protected plugin entries. It also exposes both full-content and behavioral fingerprints.
+
+### 8. Quarantine and restore
+
+Quarantine only one explicitly selected Skill at a time. It is confirmation-gated, recoverable, refuses the manager itself, and refuses Codex plugin or WorkBuddy paths:
+
+```bash
+python3 /absolute/path/to/winter-skill-system-manager/scripts/skill_system_manager.py \
+  quarantine move --path "/path/to/suspicious-skill" --confirm
+
+python3 /absolute/path/to/winter-skill-system-manager/scripts/skill_system_manager.py \
+  quarantine list
+
+python3 /absolute/path/to/winter-skill-system-manager/scripts/skill_system_manager.py \
+  quarantine restore --manifest "/path/to/quarantine/timestamp/transaction.json" --confirm
+```
+
+The source directory or symlink is moved as one recoverable unit; an existing original destination is never overwritten during restore. Read [references/security-audit.md](references/security-audit.md) and [references/status-quarantine.md](references/status-quarantine.md) for the decision boundaries.
+
+### 9. Roll back
 
 Use the `transaction.json` written by `apply`:
 
@@ -113,9 +152,11 @@ Always report:
 1. scan roots and skipped protected directories;
 2. counts by category and the uncertain entries;
 3. duplicate content groups and broken links;
-4. proposed operations and which ones require confirmation;
-5. backup and transaction paths after applying changes;
-6. verification result and any remaining manual work.
+4. audit findings and exact evidence when `audit` is used;
+5. entrypoint health and protected paths when `status` is used;
+6. proposed operations and which ones require confirmation;
+7. backup, quarantine, and transaction paths after applying changes;
+8. verification result and any remaining manual work.
 
 Keep user-specific paths in runtime reports only. Never commit those reports into this public Skill repository.
 
