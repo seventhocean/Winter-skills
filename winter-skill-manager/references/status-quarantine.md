@@ -18,7 +18,7 @@ Codex 插件缓存只报告状态，不参与移动、链接、隔离或删除�
 
 1. 只能指定一个 Skill 目录或指向 Skill 的软链接；
 2. 必须显式传入 `--confirm`；
-3. 真实目录和软链接整体移动到 `~/.winter-skill-system-manager/quarantine/<时间戳>/`；
+3. 真实目录和软链接整体移动到 `~/.winter-skill-manager/quarantine/<时间戳>/`；
 4. 同时写入 `transaction.json`，记录原路径和隔离路径；
 5. 恢复时原路径必须不存在，工具不会覆盖新的文件或目录；
 6. 管理器自身、Codex 插件和 WorkBuddy 路径拒绝隔离。

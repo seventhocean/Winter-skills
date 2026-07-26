@@ -1,0 +1,4 @@
+interface:
+  display_name: "Winter Skill Manager"
+  short_description: "Safely organize local Skills and project links"
+  default_prompt: "Use $winter-skill-manager to audit and safely organize my local Skills and project links."

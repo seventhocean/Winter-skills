@@ -55,7 +55,7 @@ DEFAULT_SKILL_ROOTS = (
     ".codex/skills",
     ".workbuddy/skills",
 )
-DEFAULT_QUARANTINE_ROOT = "~/.winter-skill-system-manager/quarantine"
+DEFAULT_QUARANTINE_ROOT = "~/.winter-skill-manager/quarantine"
 BEHAVIORAL_SCRIPT_EXTENSIONS = {
     ".bash",
     ".cjs",
@@ -893,7 +893,7 @@ def command_quarantine_move(args: argparse.Namespace) -> int:
     source = absolute(args.path)
     root = quarantine_root_from_args(args)
     if is_self_target(source):
-        print("error: refusing to quarantine Winter Skill System Manager itself", file=sys.stderr)
+        print("error: refusing to quarantine Winter Skill Manager itself", file=sys.stderr)
         return 1
     if is_protected_runtime_path(source):
         print("error: refusing to modify a protected plugin or WorkBuddy path", file=sys.stderr)
@@ -974,7 +974,7 @@ def command_quarantine_restore(args: argparse.Namespace) -> int:
         original = absolute(entry["original_path"])
         quarantined = absolute(entry["quarantined_path"])
         if is_self_target(original):
-            conflicts.append(f"refusing to restore over Winter Skill System Manager: {original}")
+            conflicts.append(f"refusing to restore over Winter Skill Manager: {original}")
         if is_protected_runtime_path(original):
             conflicts.append(f"refusing to restore into a protected plugin or WorkBuddy path: {original}")
         if lexists(original):
@@ -1262,13 +1262,13 @@ def build_parser() -> argparse.ArgumentParser:
     quarantine_subparsers = quarantine_parser.add_subparsers(dest="quarantine_command", required=True)
 
     quarantine_list_parser = quarantine_subparsers.add_parser("list", help="List quarantine manifests")
-    quarantine_list_parser.add_argument("--quarantine-root", help="Quarantine root; defaults to ~/.winter-skill-system-manager/quarantine")
+    quarantine_list_parser.add_argument("--quarantine-root", help="Quarantine root; defaults to ~/.winter-skill-manager/quarantine")
     quarantine_list_parser.add_argument("--output", help="Write JSON report to this path")
     quarantine_list_parser.set_defaults(function=command_quarantine_list, quarantine_function=command_quarantine_list)
 
     quarantine_move_parser = quarantine_subparsers.add_parser("move", help="Quarantine one Skill; never a blanket operation")
     quarantine_move_parser.add_argument("--path", required=True, help="One Skill directory or symlink to quarantine")
-    quarantine_move_parser.add_argument("--quarantine-root", help="Quarantine root; defaults to ~/.winter-skill-system-manager/quarantine")
+    quarantine_move_parser.add_argument("--quarantine-root", help="Quarantine root; defaults to ~/.winter-skill-manager/quarantine")
     quarantine_move_parser.add_argument("--confirm", action="store_true", help="Confirm the explicitly selected move")
     quarantine_move_parser.add_argument("--output", help="Write JSON preview when running without confirmation")
     quarantine_move_parser.set_defaults(function=command_quarantine_move, quarantine_function=command_quarantine_move)

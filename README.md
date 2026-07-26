@@ -7,7 +7,7 @@ Winter 的公开 Agent Skills 集合，提供可直接安装、复用和更新�
 | Skill | 用途 |
 |---|---|
 | `winter-ppt-creator` | 创建赛博朋克风格的网页 PPT，适合将主题、提纲或内容整理为可演示的单页 HTML 幻灯片。 |
-| `winter-skill-system-manager` | 盘点、分类和维护本地 Agent Skills、软链接与项目级引用，支持安全审计、可恢复隔离、迁移、验证和回滚。 |
+| `winter-skill-manager` | 盘点、分类和维护本地 Agent Skills、软链接与项目级引用，支持安全审计、可恢复隔离、迁移、验证和回滚。 |
 
 ## 安装
 
@@ -30,7 +30,7 @@ npx -y skills add seventhocean/Winter-skills \
 
 ```bash
 npx -y skills add seventhocean/Winter-skills \
-  --skill winter-skill-system-manager \
+  --skill winter-skill-manager \
   --agent claude-code \
   --global
 ```
@@ -59,7 +59,7 @@ npx -y skills add seventhocean/Winter-skills \
 
 ```bash
 npx skills update winter-ppt-creator --global
-npx skills update winter-skill-system-manager --global
+npx skills update winter-skill-manager --global
 ```
 
 也可以重新运行对应的 `skills add` 命令。
@@ -69,6 +69,6 @@ npx skills update winter-skill-system-manager --global
 安装完成后，直接用自然语言描述任务即可。Agent 会在需要时调用相应 Skill。
 
 - 需要制作网页 PPT 时，使用 `winter-ppt-creator`。
-- 需要整理本地 Skill 或项目级 Skill 引用时，使用 `winter-skill-system-manager`。
+- 需要整理本地 Skill 或项目级 Skill 引用时，使用 `winter-skill-manager`。
 
 Skill 的具体说明、参数和参考资料位于各自目录中。

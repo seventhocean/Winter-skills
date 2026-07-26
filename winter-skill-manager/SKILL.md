@@ -1,9 +1,9 @@
 ---
-name: winter-skill-system-manager
+name: winter-skill-manager
 description: Scan, classify, plan, and safely reorganize local Agent Skills, symlinks, plugin entries, and project-level Skill references without breaking existing usage. Use when a user wants to audit scattered Skills, distinguish personal and third-party sources, remove duplicate copies, create a canonical Skill layout, repair links, migrate entries, verify runtime health, or roll back a previous migration.
 ---
 
-# Winter Skill System Manager
+# Winter Skill Manager
 
 Use this Skill to turn a scattered local Skill installation into a maintainable system. Treat the user's machine as unknown: discover paths instead of assuming a vendor layout, distinguish complete projects from Skills, and keep software-managed plugin ecosystems outside the migration scope.
 
@@ -28,7 +28,7 @@ The Skill is branded for Winter but is intentionally portable. Never embed Winte
 Use the bundled scanner. It defaults to common user-level roots that exist, or accept explicit `--scan-root` and `--project-root` arguments. Prefer explicit roots when the user has already identified a project.
 
 ```bash
-python3 /absolute/path/to/winter-skill-system-manager/scripts/skill_system_manager.py \
+python3 /absolute/path/to/winter-skill-manager/scripts/skill_system_manager.py \
   inventory \
   --scan-root "/path/to/.claude/skills" \
   --scan-root "/path/to/.agents/skills" \
@@ -43,7 +43,7 @@ The inventory records physical Skill directories, symlink entrypoints, broken ta
 Pass the inventory to `classify`. Supply canonical roots when the user has chosen them:
 
 ```bash
-python3 /absolute/path/to/winter-skill-system-manager/scripts/skill_system_manager.py \
+python3 /absolute/path/to/winter-skill-manager/scripts/skill_system_manager.py \
   classify \
   --input /tmp/skill-inventory.json \
   --personal-public-root "/path/to/public-skills" \
@@ -57,7 +57,7 @@ Use `references/classification.md` for the decision rules. A Git remote proves t
 ### 3. Plan
 
 ```bash
-python3 /absolute/path/to/winter-skill-system-manager/scripts/skill_system_manager.py \
+python3 /absolute/path/to/winter-skill-manager/scripts/skill_system_manager.py \
   plan --input /tmp/skill-classified.json --output /tmp/skill-plan.json
 ```
 
@@ -68,7 +68,7 @@ Explain the plan to the user before applying it. The generated plan intentionall
 Only use `apply` after the user has approved the edited plan:
 
 ```bash
-python3 /absolute/path/to/winter-skill-system-manager/scripts/skill_system_manager.py \
+python3 /absolute/path/to/winter-skill-manager/scripts/skill_system_manager.py \
   apply --plan /tmp/skill-plan.json --confirm
 ```
 
@@ -77,7 +77,7 @@ For approved `move` or `link` operations, the script creates parent directories 
 ### 5. Verify
 
 ```bash
-python3 /absolute/path/to/winter-skill-system-manager/scripts/skill_system_manager.py \
+python3 /absolute/path/to/winter-skill-manager/scripts/skill_system_manager.py \
   verify --input /tmp/skill-classified.json --output /tmp/skill-verify.json
 ```
 
@@ -88,7 +88,7 @@ Verification fails on broken symlinks or missing `SKILL.md` records and reports 
 Run the static audit against an inventory or explicit roots. It reads `SKILL.md` and executable script files only; it never executes scanned code or makes network requests:
 
 ```bash
-python3 /absolute/path/to/winter-skill-system-manager/scripts/skill_system_manager.py \
+python3 /absolute/path/to/winter-skill-manager/scripts/skill_system_manager.py \
   audit --input /tmp/skill-inventory.json --output /tmp/skill-audit.json
 ```
 
@@ -99,7 +99,7 @@ Review exact file, line, excerpt, rule, and severity for every finding. A high o
 Use `status` to see which host or project entrypoints point to which physical source:
 
 ```bash
-python3 /absolute/path/to/winter-skill-system-manager/scripts/skill_system_manager.py \
+python3 /absolute/path/to/winter-skill-manager/scripts/skill_system_manager.py \
   status --project-root "/path/to/project" --include-sources
 ```
 
@@ -110,13 +110,13 @@ The report distinguishes direct absolute links, relative links, indirect links, 
 Quarantine only one explicitly selected Skill at a time. It is confirmation-gated, recoverable, refuses the manager itself, and refuses Codex plugin or WorkBuddy paths:
 
 ```bash
-python3 /absolute/path/to/winter-skill-system-manager/scripts/skill_system_manager.py \
+python3 /absolute/path/to/winter-skill-manager/scripts/skill_system_manager.py \
   quarantine move --path "/path/to/suspicious-skill" --confirm
 
-python3 /absolute/path/to/winter-skill-system-manager/scripts/skill_system_manager.py \
+python3 /absolute/path/to/winter-skill-manager/scripts/skill_system_manager.py \
   quarantine list
 
-python3 /absolute/path/to/winter-skill-system-manager/scripts/skill_system_manager.py \
+python3 /absolute/path/to/winter-skill-manager/scripts/skill_system_manager.py \
   quarantine restore --manifest "/path/to/quarantine/timestamp/transaction.json" --confirm
 ```
 
@@ -127,7 +127,7 @@ The source directory or symlink is moved as one recoverable unit; an existing or
 Use the `transaction.json` written by `apply`:
 
 ```bash
-python3 /absolute/path/to/winter-skill-system-manager/scripts/skill_system_manager.py \
+python3 /absolute/path/to/winter-skill-manager/scripts/skill_system_manager.py \
   rollback --manifest "/path/to/backup/transaction.json" --confirm
 ```
 
