@@ -1,0 +1,4 @@
+interface:
+  display_name: "Winter Picture Skill"
+  short_description: "将照片制作成米白水墨明信片或复古撕纸丝网拼贴"
+  default_prompt: "Use $winter-picture-skill to transform my reference photo with the best matching editorial picture template."
