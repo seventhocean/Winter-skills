@@ -1,0 +1,4 @@
+interface:
+  display_name: "天宫巨物"
+  short_description: "一句场景生成东方幻想巨物感关键帧与视频"
+  default_prompt: "使用 $winter-tiangong，把我描述的东方幻想场景生成成 16:9 巨物感关键帧和视频。"

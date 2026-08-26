@@ -6,6 +6,7 @@ Winter 的公开 Agent Skills 集合，提供可直接安装、复用和更新�
 
 | Skill | 用途 |
 |---|---|
+| `winter-tiangong` | 将一句中国风云海或东方幻想巨构场景转化为 16:9 巨物感关键帧与视频。 |
 | `winter-ppt-creator` | 创建赛博朋克风格的网页 PPT，适合将主题、提纲或内容整理为可演示的单页 HTML 幻灯片。 |
 | `winter-skill-manager` | 盘点、分类和维护本地 Agent Skills、软链接与项目级引用，支持安全审计、可恢复隔离、迁移、验证和回滚。 |
 
@@ -20,6 +21,13 @@ npx -y skills add seventhocean/Winter-skills --global --all
 ```
 
 ### 安装指定 Skill
+
+```bash
+npx -y skills add seventhocean/Winter-skills \
+  --skill winter-tiangong \
+  --agent codex \
+  --global
+```
 
 ```bash
 npx -y skills add seventhocean/Winter-skills \
@@ -69,6 +77,7 @@ npx skills update winter-skill-manager --global
 安装完成后，直接用自然语言描述任务即可。Agent 会在需要时调用相应 Skill。
 
 - 需要制作网页 PPT 时，使用 `winter-ppt-creator`。
+- 需要设计云顶天宫、云海巨门或东方幻想巨构的关键帧和视频提示词时，使用 `winter-tiangong`。
 - 需要整理本地 Skill 或项目级 Skill 引用时，使用 `winter-skill-manager`。
 
 Skill 的具体说明、参数和参考资料位于各自目录中。
